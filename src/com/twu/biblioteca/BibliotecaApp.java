@@ -1,28 +1,37 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menu.Menu;
 import com.twu.biblioteca.helpers.CliHelper;
 
 import java.util.ArrayList;
 
+import static java.lang.Integer.parseInt;
+
 public class BibliotecaApp {
+
+    private Menu menu;
 
 
     public static void main(String[] args) {
         Biblioteca biblioteca =  createBiblioteca();
+        Menu menu = new Menu(biblioteca);
+
         showWelcomeMessage();
-        listBooks(biblioteca);
+        printMenuOptions(menu);
+        chooseOption(menu);
+
+        //listBooks(biblioteca);
     }
 
-    private static void listBooks(Biblioteca biblioteca) {
-        printAvailableBooksHeader();
-        for (Book book : biblioteca.getBooks()){
-            CliHelper.buildFormattedLine(book.getTitle(), book.getAuthor(), book.getPublishedYear());
-        }
+    private static void chooseOption(Menu menu) {
+        String number = CliHelper.getUserInput("Option: ");
+        menu.chooseOption(parseInt(number));
+
     }
 
-    private static void printAvailableBooksHeader() {
-        System.out.println("These are the available books:");
-        CliHelper.buildFormattedLine("Title", "Author", "Year");
+    private static void printMenuOptions(Menu menu) {
+        CliHelper.print("Please, choose an option: \n");
+        menu.show();
     }
 
     private static void showWelcomeMessage() {

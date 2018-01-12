@@ -29,6 +29,15 @@ public class MenuTest {
         assertEquals(ListBooksOption.class, menuOption.getClass());
     }
 
+    @Test
+    public void shouldRaiseErrorWhenOptionDoesntExist(){
+
+            MenuOption menuOption = this.menu.findOption(2);
+            fail();
+
+
+    }
+
     private static Biblioteca createBiblioteca() {
         ArrayList<Book> books = new ArrayList<Book>();
         Book harry_potter = new Book("Harry Potter", "J.K. Rowling", "1997");

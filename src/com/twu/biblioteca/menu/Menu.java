@@ -5,6 +5,7 @@ import com.twu.biblioteca.helpers.CliHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class Menu {
@@ -32,8 +33,13 @@ public class Menu {
     }
 
     public MenuOption findOption(int number){
-        MenuOption option = findOptionByNumber(number);
-        return option;
+        try{
+            MenuOption option = findOptionByNumber(number);
+            return option;
+        }
+        catch (NoSuchElementException ex){
+            throw new InvalidOptionException("Wrong option");
+        }
     }
 
     private MenuOption findOptionByNumber(int number) {

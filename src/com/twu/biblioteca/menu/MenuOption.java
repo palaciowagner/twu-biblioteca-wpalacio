@@ -13,7 +13,9 @@ public abstract class MenuOption {
         this.setBiblioteca(biblioteca);
     }
 
-    public abstract String print();
+    public String print(){
+        return this.getOptionNumber() + ". "+ this.getOptionText();
+    }
 
     public abstract void view();
 

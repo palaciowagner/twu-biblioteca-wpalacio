@@ -1,14 +1,13 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Biblioteca {
 
-    private ArrayList<Book> books;
+    private List<Book> books;
 
-    public Biblioteca(ArrayList<Book> books){
+    public Biblioteca(List<Book> books){
         this.setBooks(books);
     }
 
@@ -17,10 +16,10 @@ public class Biblioteca {
     }
 
     public List<Book> getAvailableBooks() {
-        return this.books.stream().filter(book -> book.isAvailable()).collect(Collectors.<Book> toList());
+        return this.books.stream().filter(Book::isAvailable).collect(Collectors.toList());
     }
 
-    public void setBooks(ArrayList<Book> books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 }

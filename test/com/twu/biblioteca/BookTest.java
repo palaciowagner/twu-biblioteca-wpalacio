@@ -10,7 +10,7 @@ public class BookTest {
     private Book bookTest;
     @Before
     public void setUp(){
-        this.bookTest = new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "1997");
+        this.bookTest = new BookTestBuilder().build();
     }
     @Test
     public void shouldShowAuthorsName(){

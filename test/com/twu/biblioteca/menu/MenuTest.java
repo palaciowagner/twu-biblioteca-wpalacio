@@ -1,12 +1,9 @@
 package com.twu.biblioteca.menu;
 
-import com.twu.biblioteca.Biblioteca;
-import com.twu.biblioteca.Book;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.*;
 
 public class MenuTest {
@@ -14,13 +11,12 @@ public class MenuTest {
 
     @Before
     public void setUp() {
-        Biblioteca biblioteca = createBiblioteca();
-        this.menu = new Menu(biblioteca);
+        this.menu = new MenuTestBuilder().build();
     }
 
     @Test
     public void shouldShowListBookOptions(){
-        assertEquals("1. List of Books\n", this.menu.showOptions());
+        assertThat(this.menu.showOptions(), containsString("1. List of Books\n"));
     }
 
     @Test
@@ -32,20 +28,20 @@ public class MenuTest {
     @Test
     public void shouldRaiseErrorWhenOptionDoesNotExist(){
         try {
-            MenuOption menuOption = this.menu.findOption(2);
+            MenuOption menuOption = this.menu.findOption(10);
             fail();
         }
         catch (InvalidOptionException ex){}
     }
 
-    private static Biblioteca createBiblioteca() {
-        ArrayList<Book> books = new ArrayList<Book>();
-        Book harry_potter = new Book("Harry Potter", "J.K. Rowling", "1997");
-        Book lord_of_the_rings = new Book("Lord of the rings", "J.R.R. Tolkien", "1980");
-        books.add(harry_potter);
-        books.add(lord_of_the_rings);
-        return new Biblioteca(books);
+    @Test
+    public void shouldShowQuitOption(){
+        assertThat(this.menu.showOptions(), containsString("2. Quit\n"));
     }
 
+    @Test
+    public void shouldStopAppWhenQuit(){
+
+    }
 
 }

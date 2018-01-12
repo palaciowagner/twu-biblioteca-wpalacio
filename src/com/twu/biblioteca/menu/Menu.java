@@ -5,7 +5,6 @@ import com.twu.biblioteca.helpers.CliHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static java.lang.Integer.parseInt;
@@ -17,6 +16,7 @@ public class Menu {
     public Menu(Biblioteca biblioteca){
         this.menuOptions = new ArrayList<MenuOption>(){{
             add(new ListBooksOption(1, biblioteca));
+            add(new QuitOption(2, biblioteca));
         }};
     }
 

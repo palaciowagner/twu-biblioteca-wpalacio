@@ -1,18 +1,17 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
-
 public class Book {
+
     private String title;
     private String author;
     private String publishedYear;
     private boolean isAvailable;
 
-    public Book(String title, String author, String publishedYear){
+    public Book(String title, String author, String publishedYear, boolean isAvailable){
         this.setTitle(title);
         this.setAuthor(author);
         this.setPublishedYear(publishedYear);
-        this.setAvailable(true);
+        this.setAvailable(isAvailable);
     }
 
     public String getTitle() {

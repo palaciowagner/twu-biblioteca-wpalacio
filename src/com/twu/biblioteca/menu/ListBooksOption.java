@@ -9,10 +9,6 @@ public class ListBooksOption extends MenuOption {
     public ListBooksOption(int optionNumber, Biblioteca biblioteca){
         super(optionNumber, "List of Books", biblioteca);
     }
-    @Override
-    public String print() {
-        return this.getOptionNumber() + ". "+ this.getOptionText();
-    }
 
     @Override
     public void view() {

@@ -1,11 +1,9 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.menu.Menu;
 import com.twu.biblioteca.helpers.CliHelper;
+import com.twu.biblioteca.menu.Menu;
 
 import java.util.ArrayList;
-
-import static java.lang.Integer.parseInt;
 
 public class BibliotecaApp {
 
@@ -32,12 +30,11 @@ public class BibliotecaApp {
 
     private static Biblioteca createBiblioteca() {
         ArrayList<Book> books = new ArrayList<Book>();
-        Book harry_potter = new Book("Harry Potter", "J.K. Rowling", "1997");
-        Book lord_of_the_rings = new Book("Lord of the rings", "J.R.R. Tolkien", "1980");
+        Book harry_potter = new Book("Harry Potter", "J.K. Rowling", "1997", true);
+        Book lord_of_the_rings = new Book("Lord of the rings", "J.R.R. Tolkien", "1980", true);
         books.add(harry_potter);
         books.add(lord_of_the_rings);
         return new Biblioteca(books);
     }
-
 
 }

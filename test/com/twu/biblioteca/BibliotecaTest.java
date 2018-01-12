@@ -20,8 +20,8 @@ public class BibliotecaTest {
         System.setOut(new PrintStream(outContent));
 
         ArrayList<Book> books = new ArrayList<Book>();
-        Book harry_potter = new Book("Harry Potter");
-        Book lord_of_the_rings = new Book("Lord of the rings");
+        Book harry_potter = new Book("Harry Potter", "J.K. Rowling", "1997");
+        Book lord_of_the_rings = new Book("Lord of the rings", "J.R.R. Tolkien", "1980");
         books.add(harry_potter);
         books.add(lord_of_the_rings);
 

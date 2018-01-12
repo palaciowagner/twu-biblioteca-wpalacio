@@ -8,8 +8,10 @@ public class Book {
     private String publishedYear;
     private boolean isAvailable;
 
-    public Book(String title){
+    public Book(String title, String author, String publishedYear){
         this.setTitle(title);
+        this.setAuthor(author);
+        this.setPublishedYear(publishedYear);
         this.setAvailable(true);
     }
 

@@ -5,8 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class CliHelper {
+    public static final String SPACED_LINE = "%-20.30s  %-20.30s  %-20.30s%n";
 
-    public String getUserInput(String prompt){
+    public static String getUserInput(String prompt){
         String inputLine = null;
         System.out.print(prompt + " ");
         try{
@@ -20,4 +21,10 @@ public class CliHelper {
         }
         return inputLine.toLowerCase();
     }
+
+    public static void buildFormattedLine(String first, String second, String third) {
+        System.out.printf(SPACED_LINE, first, second, third);
+    }
+
+
 }

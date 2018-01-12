@@ -1,34 +1,39 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.helpers.CliHelper;
+
 import java.util.ArrayList;
 
 public class BibliotecaApp {
+    public static final String SPACED_LINE = "%-20.30s  %-20.30s  %-20.30s%n";
 
-    public static final String DASH_TOPIC = " - ";
 
     public static void main(String[] args) {
-
-
-        Biblioteca biblioteca =  startBiblioteca();
+        Biblioteca biblioteca =  createBiblioteca();
         showWelcomeMessage();
         listBooks(biblioteca);
     }
 
     private static void listBooks(Biblioteca biblioteca) {
-        System.out.println("These are the available books:");
+        printAvailableBooksHeader();
         for (Book book : biblioteca.getBooks()){
-            System.out.println(DASH_TOPIC + book.getTitle());
+            CliHelper.buildFormattedLine(book.getTitle(), book.getAuthor(), book.getPublishedYear());
         }
+    }
+
+    private static void printAvailableBooksHeader() {
+        System.out.println("These are the available books:");
+        CliHelper.buildFormattedLine("Title", "Author", "Year");
     }
 
     private static void showWelcomeMessage() {
         System.out.println("===== Welcome to TWU Biblioteca =====");
     }
 
-    private static Biblioteca startBiblioteca() {
+    private static Biblioteca createBiblioteca() {
         ArrayList<Book> books = new ArrayList<Book>();
-        Book harry_potter = new Book("Harry Potter");
-        Book lord_of_the_rings = new Book("Lord of the rings");
+        Book harry_potter = new Book("Harry Potter", "J.K. Rowling", "1997");
+        Book lord_of_the_rings = new Book("Lord of the rings", "J.R.R. Tolkien", "1980");
         books.add(harry_potter);
         books.add(lord_of_the_rings);
         return new Biblioteca(books);

@@ -18,15 +18,7 @@ public class BibliotecaApp {
 
         showWelcomeMessage();
         printMenuOptions(menu);
-        chooseOption(menu);
-
-        //listBooks(biblioteca);
-    }
-
-    private static void chooseOption(Menu menu) {
-        String number = CliHelper.getUserInput("Option: ");
-        menu.chooseOption(parseInt(number));
-
+        menu.chooseOption();
     }
 
     private static void printMenuOptions(Menu menu) {

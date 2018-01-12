@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import static java.lang.Integer.parseInt;
+
 public class Menu {
 
     private List<MenuOption> menuOptions;
@@ -28,24 +30,28 @@ public class Menu {
         return options.toString();
     }
 
-    public void chooseOption(int number){
-        findOption(number).view();
-    }
-
-    public MenuOption findOption(int number){
+    public void chooseOption(){
         try{
-            MenuOption option = findOptionByNumber(number);
-            return option;
+            String number = CliHelper.getUserInput("Option: ");
+            findOption(parseInt(number)).view();
         }
-        catch (NoSuchElementException ex){
-            throw new InvalidOptionException("Wrong option");
+        catch (InvalidOptionException ex){
+            CliHelper.print("Select a valid option!\n");
+            chooseOption();
         }
     }
 
-    private MenuOption findOptionByNumber(int number) {
-        Optional<MenuOption> menuOption =  this.menuOptions.stream()
-                                                            .filter(option-> option.getOptionNumber() == number)
-                                                            .findFirst();
-        return menuOption.get();
+    public MenuOption findOption(int number) throws InvalidOptionException{
+            Optional<MenuOption> option = findOptionByNumber(number);
+            if (!option.isPresent()){
+                throw new InvalidOptionException();
+            }
+            return option.get();
+    }
+
+    private Optional<MenuOption> findOptionByNumber(int number) {
+            return this.menuOptions.stream()
+                    .filter(option -> option.getOptionNumber() == number)
+                    .findFirst();
     }
 }

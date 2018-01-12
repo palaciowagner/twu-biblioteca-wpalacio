@@ -30,12 +30,12 @@ public class MenuTest {
     }
 
     @Test
-    public void shouldRaiseErrorWhenOptionDoesntExist(){
-
+    public void shouldRaiseErrorWhenOptionDoesNotExist(){
+        try {
             MenuOption menuOption = this.menu.findOption(2);
             fail();
-
-
+        }
+        catch (InvalidOptionException ex){}
     }
 
     private static Biblioteca createBiblioteca() {

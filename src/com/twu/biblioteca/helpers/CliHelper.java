@@ -25,6 +25,4 @@ public class CliHelper {
     public static void buildFormattedLine(String first, String second, String third) {
         System.out.printf(SPACED_LINE, first, second, third);
     }
-
-
 }

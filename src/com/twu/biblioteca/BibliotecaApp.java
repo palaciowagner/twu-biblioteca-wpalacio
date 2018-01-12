@@ -5,7 +5,6 @@ import com.twu.biblioteca.helpers.CliHelper;
 import java.util.ArrayList;
 
 public class BibliotecaApp {
-    public static final String SPACED_LINE = "%-20.30s  %-20.30s  %-20.30s%n";
 
 
     public static void main(String[] args) {

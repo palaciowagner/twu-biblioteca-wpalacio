@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.helpers.CliHelper;
 import com.twu.biblioteca.menu.Menu;
 
 import java.util.ArrayList;
@@ -15,13 +14,8 @@ public class BibliotecaApp {
         Menu menu = new Menu(biblioteca);
 
         showWelcomeMessage();
-        printMenuOptions(menu);
-        menu.chooseOption();
-    }
-
-    private static void printMenuOptions(Menu menu) {
-        CliHelper.print("Please, choose an option: \n");
-        menu.show();
+        menu.printOptions();
+        menu.getUserOption();
     }
 
     private static void showWelcomeMessage() {

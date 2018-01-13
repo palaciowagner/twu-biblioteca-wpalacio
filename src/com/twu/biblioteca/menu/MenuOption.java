@@ -6,11 +6,13 @@ public abstract class MenuOption {
     private int optionNumber;
     private String optionText;
     private Biblioteca biblioteca;
+    private boolean quitApp;
 
     public MenuOption(int optionNumber, String optionText, Biblioteca biblioteca){
         this.setOptionNumber(optionNumber);
         this.setOptionText(optionText);
         this.setBiblioteca(biblioteca);
+        this.setQuitApp(false);
     }
 
     public String print(){
@@ -41,5 +43,13 @@ public abstract class MenuOption {
 
     public void setBiblioteca(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
+    }
+
+    public boolean isQuitApp() {
+        return quitApp;
+    }
+
+    public void setQuitApp(boolean quitApp) {
+        this.quitApp = quitApp;
     }
 }

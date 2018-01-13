@@ -19,9 +19,7 @@ public class ListBooksOption extends MenuOption {
     }
 
     private static void printAvailableBooksHeader() {
-        CliHelper.print("These are the available books:\n");
+        CliHelper.print("\nThese are the available books:\n\n");
         CliHelper.buildFormattedLine("Title", "Author", "Year");
     }
-
-
 }

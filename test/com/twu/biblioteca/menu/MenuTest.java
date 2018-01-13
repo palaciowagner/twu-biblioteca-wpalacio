@@ -1,17 +1,28 @@
 package com.twu.biblioteca.menu;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.*;
 
 public class MenuTest {
     private Menu menu;
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @Before
     public void setUp() {
         this.menu = new MenuTestBuilder().build();
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @After
+     public void cleanUpStreams() {
+        System.setOut(null);
     }
 
     @Test
@@ -40,7 +51,8 @@ public class MenuTest {
     }
 
     @Test
-    public void shouldStopAppWhenQuit(){
+    public void shouldQuitApp(){
+
 
     }
 

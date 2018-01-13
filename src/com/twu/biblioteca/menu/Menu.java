@@ -12,33 +12,48 @@ import static java.lang.Integer.parseInt;
 public class Menu {
 
     private List<MenuOption> menuOptions;
+    private boolean isMenuActive;
 
     public Menu(Biblioteca biblioteca){
         this.menuOptions = new ArrayList<MenuOption>(){{
             add(new ListBooksOption(1, biblioteca));
             add(new QuitOption(2, biblioteca));
         }};
+        setIsMenuActive(true);
     }
 
-    public void show(){
+    public void printOptions(){
         CliHelper.print(showOptions());
     }
 
     public String showOptions() {
+        CliHelper.print("\nMenu:\n");
         StringBuilder options =  new StringBuilder();
         this.menuOptions.forEach(option -> options.append(option.print() + "\n"));
         return options.toString();
     }
 
-    public void chooseOption(){
+    public void getUserOption(){
+        while(isMenuActive) {
+            chooseOption(getUserOption("Please, select an option: "));
+        }
+    }
+
+    private void chooseOption(int number){
+
         try{
-            String number = CliHelper.getUserInput("Option: ");
-            findOption(parseInt(number)).view();
+            MenuOption option = findOption(number);
+            setIsMenuActive(!option.isQuitApp());
+            option.view();
         }
         catch (InvalidOptionException ex){
-            CliHelper.print("Select a valid option!\n");
-            chooseOption();
+            int newNumber = getUserOption("Select a valid option!");
+            chooseOption(newNumber);
         }
+    }
+
+    private int getUserOption(String message) {
+        return parseInt(CliHelper.getUserInput(message));
     }
 
     public MenuOption findOption(int number) throws InvalidOptionException{
@@ -54,4 +69,9 @@ public class Menu {
                     .filter(option -> option.getOptionNumber() == number)
                     .findFirst();
     }
+
+    private void setIsMenuActive(boolean quitApp) {
+        this.isMenuActive = quitApp;
+    }
+
 }

@@ -21,7 +21,8 @@ public class Menu {
             add(new CheckoutBookOption(2, biblioteca));
             add(new ReturnBookOption(3, biblioteca));
             add(new ListMoviesOption(4, biblioteca));
-            add(new QuitOption(5, biblioteca));
+            add(new CheckoutMovieOption(5, biblioteca));
+            add(new QuitOption(6, biblioteca));
 
         }};
         setIsMenuActive(true);

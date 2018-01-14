@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.exceptions.BookNotFoundException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -72,5 +73,7 @@ public class Biblioteca {
         }
     }
 
-
+    public List<Movie> getAvailableMovies() {
+        return new ArrayList<Movie>();
+    }
 }

@@ -26,6 +26,12 @@ public class BibliotecaTest {
     }
 
     @Test
+    public void shouldShowListOfAvailableMovies(){
+        boolean availableMovies = this.biblioteca.getAvailableMovies().stream().anyMatch(movie -> movie.isAvailable());
+        assertEquals(true, availableMovies);
+    }
+
+    @Test
     public void shouldNotShowCheckedOutBooks(){
         this.biblioteca = new BibliotecaTestBuilder().WithBooks(new ArrayList<Book>() {{
             add(new BookTestBuilder().WithIsAvailable(false).build());

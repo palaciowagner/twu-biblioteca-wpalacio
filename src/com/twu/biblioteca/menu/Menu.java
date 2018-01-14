@@ -2,6 +2,7 @@ package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.Biblioteca;
 import com.twu.biblioteca.helpers.CliHelper;
+import com.twu.biblioteca.menu.exceptions.InvalidOptionException;
 
 import java.util.ArrayList;
 import java.util.List;

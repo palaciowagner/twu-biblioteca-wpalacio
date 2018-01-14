@@ -1,4 +1,4 @@
-package com.twu.biblioteca.menu;
+package com.twu.biblioteca.menu.exceptions;
 
 import java.util.NoSuchElementException;
 

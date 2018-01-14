@@ -13,7 +13,7 @@ public class ListBooksOption extends MenuOption {
     @Override
     public void view() {
         printAvailableBooksHeader();
-        for (Book book : this.getBiblioteca().getBooks()){
+        for (Book book : this.getBiblioteca().getAvailableBooks()){
             CliHelper.buildFormattedLine(book.getTitle(), book.getAuthor(), book.getPublishedYear());
         }
     }

@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
@@ -39,5 +39,12 @@ public class BibliotecaTest {
         Book book = this.biblioteca.findBook("Harry Potter");
         boolean isBookAvailable = book.isAvailable();
         assertThat(isBookAvailable, is(false));
+    }
+
+    @Test
+    public void shouldNotShowCheckedOutBookOnBookList(){
+        Book beforeCheckout = this.biblioteca.getBooks().stream().filter(book -> book.getTitle().equals("Harry Potter")).findFirst().get();
+        this.biblioteca.checkoutBook("Harry Potter");
+        assertThat(this.biblioteca.getAvailableBooks(), not(hasItem(beforeCheckout)));
     }
 }

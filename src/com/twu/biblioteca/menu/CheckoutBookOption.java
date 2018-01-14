@@ -1,6 +1,7 @@
 package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.Biblioteca;
+import com.twu.biblioteca.helpers.CliHelper;
 
 public class CheckoutBookOption extends MenuOption {
     public CheckoutBookOption(int optionNumber, Biblioteca biblioteca) {
@@ -9,7 +10,7 @@ public class CheckoutBookOption extends MenuOption {
 
     @Override
     public void view() {
-        
-
+        String bookTitle = CliHelper.getUserInput("Enter the title of the book you want to checkout: ");
+        this.getBiblioteca().checkoutBook(bookTitle);
     }
 }

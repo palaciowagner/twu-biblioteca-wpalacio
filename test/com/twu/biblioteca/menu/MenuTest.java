@@ -1,5 +1,6 @@
 package com.twu.biblioteca.menu;
 
+import com.twu.biblioteca.menu.exceptions.InvalidOptionException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

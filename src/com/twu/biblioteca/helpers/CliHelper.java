@@ -19,7 +19,7 @@ public class CliHelper {
         catch (IOException e){
             System.out.println("IOException: " + e);
         }
-        return inputLine.toLowerCase();
+        return inputLine;
     }
 
     public static void buildFormattedLine(String first, String second, String third) {

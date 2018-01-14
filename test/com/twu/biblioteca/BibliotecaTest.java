@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.exceptions.BookNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,7 +35,7 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void shouldMakeBookUnavailableAfterCheckout(){
+    public void shouldMakeBookUnavailableAfterCheckout() throws BookNotFoundException {
         this.biblioteca.checkoutBook("Harry Potter");
         Book book = this.biblioteca.findBook("Harry Potter");
         boolean isBookAvailable = book.isAvailable();
@@ -43,8 +44,19 @@ public class BibliotecaTest {
 
     @Test
     public void shouldNotShowCheckedOutBookOnBookList(){
+        Book beforeCheckout = CheckoutHarryPotterBook();
+        assertThat(this.biblioteca.getAvailableBooks(), not(hasItem(beforeCheckout)));
+    }
+
+    private Book CheckoutHarryPotterBook() {
         Book beforeCheckout = this.biblioteca.getBooks().stream().filter(book -> book.getTitle().equals("Harry Potter")).findFirst().get();
         this.biblioteca.checkoutBook("Harry Potter");
-        assertThat(this.biblioteca.getAvailableBooks(), not(hasItem(beforeCheckout)));
+        return beforeCheckout;
+    }
+
+    @Test
+    public void shouldNotifyIfBookIsUnavailable(){
+        Book beforeCheckout = CheckoutHarryPotterBook();
+        assertEquals(this.biblioteca.checkoutBook("Harry Potter"), "That book is not available!");
     }
 }

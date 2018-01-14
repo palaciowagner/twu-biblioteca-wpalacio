@@ -11,6 +11,6 @@ public class CheckoutBookOption extends MenuOption {
     @Override
     public void view() {
         String bookTitle = CliHelper.getUserInput("Enter the title of the book you want to checkout: ");
-        this.getBiblioteca().checkoutBook(bookTitle);
+        CliHelper.println(this.getBiblioteca().checkoutBook(bookTitle));
     }
 }

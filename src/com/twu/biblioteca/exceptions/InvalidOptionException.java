@@ -1,9 +1,9 @@
-package com.twu.biblioteca.menu.exceptions;
+package com.twu.biblioteca.exceptions;
 
 import java.util.NoSuchElementException;
 
 public class InvalidOptionException extends NoSuchElementException{
     public InvalidOptionException(){
-        super();
+        super("Select a valid option!");
     }
 }

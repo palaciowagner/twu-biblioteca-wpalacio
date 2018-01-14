@@ -1,6 +1,9 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.exceptions.BookNotFoundException;
+
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Biblioteca {
@@ -23,17 +26,33 @@ public class Biblioteca {
         this.books = books;
     }
 
-    public void checkoutBook(String title) {
-        findBook(title).setAvailable(false);
-        System.out.println("Thank you! Enjoy the book!");
+    public String checkoutBook(String title) {
+        String returnMessage = "That book is not available!";
+
+        try {
+            Book book = findBook(title);
+            if (book.isAvailable()) {
+                book.setAvailable(false);
+                returnMessage = "Thank you! Enjoy the book!";
+            }
+        } catch (BookNotFoundException e) {
+            return e.getMessage();
+        }
+        return returnMessage;
     }
 
-    public Book findBook(String title) {
-        return this.getBooks()
-                .stream()
-                .filter(book -> book.getTitle()
-                        .equals(title))
-                .findFirst()
-                .get();
+    public Book findBook(String title) throws BookNotFoundException {
+        try {
+            return this.getBooks()
+                    .stream()
+                    .filter(book -> book.getTitle()
+                            .equals(title))
+                    .findFirst()
+                    .get();
+
+        }
+        catch (NoSuchElementException ex){
+            throw new BookNotFoundException();
+        }
     }
 }

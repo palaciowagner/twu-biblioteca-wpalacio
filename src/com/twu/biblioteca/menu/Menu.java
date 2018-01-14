@@ -2,7 +2,7 @@ package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.Biblioteca;
 import com.twu.biblioteca.helpers.CliHelper;
-import com.twu.biblioteca.menu.exceptions.InvalidOptionException;
+import com.twu.biblioteca.exceptions.InvalidOptionException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,7 @@ public class Menu {
             option.view();
         }
         catch (InvalidOptionException ex){
-            int newNumber = getUserOption("Select a valid option!");
+            int newNumber = getUserOption(ex.getMessage());
             chooseOption(newNumber);
         }
     }

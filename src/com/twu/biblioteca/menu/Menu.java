@@ -17,7 +17,9 @@ public class Menu {
     public Menu(Biblioteca biblioteca){
         this.menuOptions = new ArrayList<MenuOption>(){{
             add(new ListBooksOption(1, biblioteca));
-            add(new QuitOption(2, biblioteca));
+            add(new CheckoutBookOption(2, biblioteca));
+            add(new QuitOption(3, biblioteca));
+
         }};
         setIsMenuActive(true);
     }

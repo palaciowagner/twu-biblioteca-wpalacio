@@ -27,7 +27,7 @@ public class MenuTest {
 
     @Test
     public void shouldShowListBookOptions(){
-        assertThat(this.menu.showOptions(), containsString("1. List of Books\n"));
+        assertThat(this.menu.showOptions(), containsString("List of Books\n"));
     }
 
     @Test
@@ -47,13 +47,11 @@ public class MenuTest {
 
     @Test
     public void shouldShowQuitOption(){
-        assertThat(this.menu.showOptions(), containsString("2. Quit\n"));
+        assertThat(this.menu.showOptions(), containsString("Quit\n"));
     }
 
     @Test
-    public void shouldQuitApp(){
-
-
+    public void shouldShowCheckoutBookOption(){
+        assertThat(this.menu.showOptions(), containsString("Checkout Book\n"));
     }
-
 }

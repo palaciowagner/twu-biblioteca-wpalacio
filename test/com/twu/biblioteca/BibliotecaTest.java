@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class BibliotecaTest {
@@ -20,4 +22,12 @@ public class BibliotecaTest {
         assertEquals(true, availableBooks);
     }
 
+    @Test
+    public void shouldNotShowCheckedOutBooks(){
+        this.biblioteca = new BibliotecaTestBuilder().WithBooks(new ArrayList<Book>() {{
+            add(new BookTestBuilder().WithIsAvailable(false).build());
+        }}).build();
+        boolean unavailableBooks = this.biblioteca.getAvailableBooks().size() < (this.biblioteca.getBooks()).size();
+        assertEquals(true, unavailableBooks);
+    }
 }

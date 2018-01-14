@@ -16,6 +16,11 @@ public class MenuTestBuilder {
         return this;
     }
 
+    public MenuTestBuilder WithBiblioteca(Biblioteca biblioteca){
+        this.biblioteca = biblioteca;
+        return this;
+    }
+
     public Menu build(){
         this.biblioteca = new BibliotecaTestBuilder().build();
         this.menuOptions = new ArrayList<MenuOption>(){{

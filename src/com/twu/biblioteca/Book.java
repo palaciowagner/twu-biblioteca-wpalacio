@@ -14,14 +14,6 @@ public class Book extends Item {
         this.setIsAvailable(isAvailable);
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     @Override
     public boolean isAvailable() {
         return isAvailable;
@@ -30,7 +22,6 @@ public class Book extends Item {
     public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
-
 
     public String getAuthor() {
         return author;

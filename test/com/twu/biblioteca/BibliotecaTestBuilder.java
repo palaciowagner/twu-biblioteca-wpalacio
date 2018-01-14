@@ -14,8 +14,14 @@ public class BibliotecaTestBuilder {
     public Biblioteca build(){
         Biblioteca biblioteca = new Biblioteca(items);
         this.items.add(new BookTestBuilder().build());
-        this.items.add(new BookTestBuilder().WithTitle("Lord of the rings").WithAuthor("J.R.R. Tolkien").WithPublishedYear("1980").build());
-        this.items.add(new BookTestBuilder().WithTitle("O Alquimista").WithAuthor("Paulo Coelho").WithPublishedYear("1990").WithIsAvailable(false).build());
+        this.items.add(new BookTestBuilder().WithTitle("Lord of the rings")
+                                            .WithAuthor("J.R.R. Tolkien")
+                                            .WithPublishedYear("1980").build());
+        this.items.add(new BookTestBuilder().WithTitle("O Alquimista")
+                                            .WithAuthor("Paulo Coelho")
+                                            .WithPublishedYear("1990")
+                                            .WithIsAvailable(false).build());
+        this.items.add(new MovieTestBuilder().build());
         return biblioteca;
     }
 }

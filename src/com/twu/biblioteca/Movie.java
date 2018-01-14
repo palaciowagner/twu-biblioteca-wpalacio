@@ -1,26 +1,17 @@
 package com.twu.biblioteca;
 
 public class Movie extends Item {
-    private String name;
     private String year;
     private String director;
     private int rating;
     private boolean isAvailable;
 
     public Movie(String name, String year, String director, int rating, boolean isAvailable){
-        this.setName(name);
+        this.setTitle(name);
         this.setYear(year);
         this.setDirector(director);
         this.setRating(rating);
         this.setIsAvailable(isAvailable);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getYear() {

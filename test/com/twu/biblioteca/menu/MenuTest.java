@@ -55,4 +55,9 @@ public class MenuTest {
     public void shouldShowCheckoutBookOption(){
         assertThat(this.menu.showOptions(), containsString("Checkout Book\n"));
     }
+
+    @Test
+    public void shouldShowReturnBookOption(){
+        assertThat(this.menu.showOptions(), containsString("Return Book\n"));
+    }
 }

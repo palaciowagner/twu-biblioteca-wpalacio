@@ -25,7 +25,9 @@ public class MenuTestBuilder {
         this.biblioteca = new BibliotecaTestBuilder().build();
         this.menuOptions = new ArrayList<MenuOption>(){{
             add(new ListBooksOption(1, biblioteca));
-            add(new QuitOption(2, biblioteca));
+            add(new CheckoutBookOption(2, biblioteca));
+            add(new ReturnBookOption(3, biblioteca));
+            add(new QuitOption(4, biblioteca));
         }};
         return new Menu(this.biblioteca);
     }

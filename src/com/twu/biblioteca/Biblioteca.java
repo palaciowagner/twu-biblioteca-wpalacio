@@ -33,12 +33,28 @@ public class Biblioteca {
             Book book = findBook(title);
             if (book.isAvailable()) {
                 book.setAvailable(false);
-                returnMessage = "Thank you! Enjoy the book!";
+                return "Thank you! Enjoy the book!";
             }
+            return returnMessage;
         } catch (BookNotFoundException e) {
             return e.getMessage();
         }
-        return returnMessage;
+    }
+
+    public String returnBook(String title) {
+        String returnMessage = "That is not a valid book to return.";
+        try{
+            Book book = findBook(title);
+            if (!book.isAvailable()) {
+                book.setAvailable(true);
+                return "Thank you for returning the book!";
+            }
+            return returnMessage;
+        }
+        catch (BookNotFoundException e) {
+            return returnMessage;
+        }
+
     }
 
     public Book findBook(String title) throws BookNotFoundException {
@@ -55,4 +71,6 @@ public class Biblioteca {
             throw new BookNotFoundException();
         }
     }
+
+
 }

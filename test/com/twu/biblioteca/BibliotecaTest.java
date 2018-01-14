@@ -44,11 +44,11 @@ public class BibliotecaTest {
 
     @Test
     public void shouldNotShowCheckedOutBookOnBookList(){
-        Book beforeCheckout = CheckoutHarryPotterBook();
+        Book beforeCheckout = checkoutHarryPotterBook();
         assertThat(this.biblioteca.getAvailableBooks(), not(hasItem(beforeCheckout)));
     }
 
-    private Book CheckoutHarryPotterBook() {
+    private Book checkoutHarryPotterBook() {
         Book beforeCheckout = this.biblioteca.getBooks().stream().filter(book -> book.getTitle().equals("Harry Potter")).findFirst().get();
         this.biblioteca.checkoutBook("Harry Potter");
         return beforeCheckout;
@@ -56,7 +56,18 @@ public class BibliotecaTest {
 
     @Test
     public void shouldNotifyIfBookIsUnavailable(){
-        Book beforeCheckout = CheckoutHarryPotterBook();
+        Book beforeCheckout = checkoutHarryPotterBook();
         assertEquals(this.biblioteca.checkoutBook("Harry Potter"), "That book is not available!");
+    }
+
+    @Test
+    public void shouldReturnBookToTheRightLibrary(){
+        checkoutHarryPotterBook();
+        assertEquals(this.biblioteca.returnBook("Harry Potter"), "Thank you for returning the book!");
+    }
+
+    @Test
+    public void shouldNotifyIfBookDoesNotBelongToLibrary(){
+        assertEquals(this.biblioteca.returnBook("Twilight"), "That is not a valid book to return.");
     }
 }

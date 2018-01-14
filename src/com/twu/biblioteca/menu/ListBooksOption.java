@@ -12,10 +12,20 @@ public class ListBooksOption extends MenuOption {
 
     @Override
     public void view() {
+        if (!(this.getBiblioteca().getAvailableBooks().size() > 0)) {
+            CliHelper.println("There are no books available :(");
+            CliHelper.println("Please, come later.");
+            return;
+        }
+        showAvailableBooksList();
+    }
+
+    private void showAvailableBooksList() {
         printAvailableBooksHeader();
-        for (Book book : this.getBiblioteca().getAvailableBooks()){
+        for (Book book : this.getBiblioteca().getAvailableBooks()) {
             CliHelper.buildFormattedLine(book.getTitle(), book.getAuthor(), book.getPublishedYear());
         }
+        CliHelper.println("");
     }
 
     private static void printAvailableBooksHeader() {

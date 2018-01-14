@@ -20,7 +20,8 @@ public class Menu {
             add(new ListBooksOption(1, biblioteca));
             add(new CheckoutBookOption(2, biblioteca));
             add(new ReturnBookOption(3, biblioteca));
-            add(new QuitOption(4, biblioteca));
+            add(new ListMoviesOption(4, biblioteca));
+            add(new QuitOption(5, biblioteca));
 
         }};
         setIsMenuActive(true);

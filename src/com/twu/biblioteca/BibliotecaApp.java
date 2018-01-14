@@ -21,12 +21,14 @@ public class BibliotecaApp {
     }
 
     private static Biblioteca createBiblioteca() {
-        BibliotecaItems books = new BibliotecaItems();
+        BibliotecaItems items = new BibliotecaItems();
         Book harry_potter = new Book("Harry Potter", "J.K. Rowling", "1997", true);
         Book lord_of_the_rings = new Book("Lord of the rings", "J.R.R. Tolkien", "1980", true);
-        books.add(harry_potter);
-        books.add(lord_of_the_rings);
-        return new Biblioteca(books);
+        Movie star_wars = new Movie("Star Wars", "1980", "George Lucas", 8,true);
+        items.add(harry_potter);
+        items.add(lord_of_the_rings);
+        items.add(star_wars);
+        return new Biblioteca(items);
     }
 
 }

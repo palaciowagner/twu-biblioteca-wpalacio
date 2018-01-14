@@ -65,4 +65,9 @@ public class MenuTest {
     public void shouldShowListMoviesOption(){
         assertThat(this.menu.showOptions(), containsString("List Movies\n"));
     }
+
+    @Test
+    public void shouldShowCheckoutMovieOption(){
+        assertThat(this.menu.showOptions(), containsString("Checkout Movie\n"));
+    }
 }

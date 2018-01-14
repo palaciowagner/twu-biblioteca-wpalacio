@@ -41,12 +41,24 @@ public class Movie extends Item {
 
     @Override
     public String checkout(Item item) {
-        return null;
+        Movie movie = (Movie)item;
+        String returnMessage = "That movie is not available!";
+        if (movie.isAvailable()) {
+            movie.setIsAvailable(false);
+            return "Thank you! Enjoy the movie!";
+        }
+        return returnMessage;
     }
 
     @Override
     public String returnItem(Item item) {
-        return null;
+        Movie movie = (Movie)item;
+        String returnMessage = "That is not a valid movie to return.";
+        if (!movie.isAvailable()) {
+            movie.setIsAvailable(true);
+            return "Thank you for returning the movie!";
+        }
+        return returnMessage;
     }
 
     @Override

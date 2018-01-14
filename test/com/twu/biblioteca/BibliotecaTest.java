@@ -1,5 +1,9 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.entities.Biblioteca;
+import com.twu.biblioteca.entities.Book;
+import com.twu.biblioteca.entities.Item;
+import com.twu.biblioteca.entities.Movie;
 import com.twu.biblioteca.exceptions.ItemNotFoundException;
 import org.junit.Before;
 import org.junit.Test;

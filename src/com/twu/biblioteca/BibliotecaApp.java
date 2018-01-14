@@ -1,6 +1,10 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.menu.Menu;
+import com.twu.biblioteca.entities.Biblioteca;
+import com.twu.biblioteca.entities.BibliotecaItems;
+import com.twu.biblioteca.entities.Book;
+import com.twu.biblioteca.entities.Movie;
+import com.twu.biblioteca.entities.menu.Menu;
 
 public class BibliotecaApp {
 

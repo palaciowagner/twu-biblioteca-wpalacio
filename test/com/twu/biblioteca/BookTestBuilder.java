@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.entities.Book;
+
 public class BookTestBuilder {
 
     private String title = "Harry Potter";

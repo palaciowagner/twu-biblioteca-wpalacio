@@ -1,5 +1,9 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.entities.Biblioteca;
+import com.twu.biblioteca.entities.BibliotecaItems;
+import com.twu.biblioteca.entities.Item;
+
 import java.util.List;
 
 public class BibliotecaTestBuilder {

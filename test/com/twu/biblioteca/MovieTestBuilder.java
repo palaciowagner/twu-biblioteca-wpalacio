@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.entities.Movie;
+
 public class MovieTestBuilder {
 
     private String name = "Star Wars";

@@ -9,6 +9,7 @@ public class CheckoutBookOption extends MenuOption {
 
     @Override
     public void view() {
+        
 
     }
 }

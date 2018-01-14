@@ -22,4 +22,18 @@ public class Biblioteca {
     public void setBooks(List<Book> books) {
         this.books = books;
     }
+
+    public void checkoutBook(String title) {
+        findBook(title).setAvailable(false);
+        System.out.println("Thank you! Enjoy the book!");
+    }
+
+    public Book findBook(String title) {
+        return this.getBooks()
+                .stream()
+                .filter(book -> book.getTitle()
+                        .equals(title))
+                .findFirst()
+                .get();
+    }
 }

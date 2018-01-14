@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 public class BibliotecaTest {
@@ -29,5 +31,13 @@ public class BibliotecaTest {
         }}).build();
         boolean unavailableBooks = this.biblioteca.getAvailableBooks().size() < (this.biblioteca.getBooks()).size();
         assertEquals(true, unavailableBooks);
+    }
+
+    @Test
+    public void shouldMakeBookUnavailableAfterCheckout(){
+        this.biblioteca.checkoutBook("Harry Potter");
+        Book book = this.biblioteca.findBook("Harry Potter");
+        boolean isBookAvailable = book.isAvailable();
+        assertThat(isBookAvailable, is(false));
     }
 }

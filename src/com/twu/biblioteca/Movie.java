@@ -1,11 +1,19 @@
 package com.twu.biblioteca;
 
-public class Movie {
+public class Movie extends Item {
     private String name;
     private String year;
     private String director;
     private int rating;
-    private boolean available;
+    private boolean isAvailable;
+
+    public Movie(String name, String year, String director, int rating, boolean isAvailable){
+        this.setName(name);
+        this.setYear(year);
+        this.setDirector(director);
+        this.setRating(rating);
+        this.setIsAvailable(isAvailable);
+    }
 
     public String getName() {
         return name;
@@ -39,11 +47,23 @@ public class Movie {
         this.rating = rating;
     }
 
-    public boolean isAvailable() {
-        return this.available;
+
+    @Override
+    public String checkout(Item item) {
+        return null;
     }
 
-    public void setAvailable(boolean available){
-        this.available = available;
+    @Override
+    public String returnItem(Item item) {
+        return null;
+    }
+
+    @Override
+    public boolean isAvailable() {
+        return this.isAvailable;
+    }
+
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
 }

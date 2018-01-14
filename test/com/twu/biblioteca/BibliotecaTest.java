@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.exceptions.BookNotFoundException;
+import com.twu.biblioteca.exceptions.ItemNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,29 +21,29 @@ public class BibliotecaTest {
 
     @Test
     public void shouldShowListOfAvailableBooks(){
-        boolean availableBooks = this.biblioteca.getAvailableBooks().stream().anyMatch(book -> book.isAvailable());
+        boolean availableBooks = this.biblioteca.getItems().allAvailable(Book.class).stream().anyMatch(book -> book.isAvailable());
         assertEquals(true, availableBooks);
     }
 
     @Test
     public void shouldShowListOfAvailableMovies(){
-        boolean availableMovies = this.biblioteca.getAvailableMovies().stream().anyMatch(movie -> movie.isAvailable());
+        boolean availableMovies = this.biblioteca.getItems().allAvailable(Movie.class).stream().anyMatch(movie -> movie.isAvailable());
         assertEquals(true, availableMovies);
     }
 
     @Test
     public void shouldNotShowCheckedOutBooks(){
-        this.biblioteca = new BibliotecaTestBuilder().WithBooks(new ArrayList<Book>() {{
+        this.biblioteca = new BibliotecaTestBuilder().WithItems(new ArrayList<Item>() {{
             add(new BookTestBuilder().WithIsAvailable(false).build());
         }}).build();
-        boolean unavailableBooks = this.biblioteca.getAvailableBooks().size() < (this.biblioteca.getBooks()).size();
+        boolean unavailableBooks = this.biblioteca.getItems().allAvailable(Book.class).size() < (this.biblioteca.getAllItems().size());
         assertEquals(true, unavailableBooks);
     }
 
     @Test
-    public void shouldMakeBookUnavailableAfterCheckout() throws BookNotFoundException {
-        this.biblioteca.checkoutBook("Harry Potter");
-        Book book = this.biblioteca.findBook("Harry Potter");
+    public void shouldMakeBookUnavailableAfterCheckout() throws ItemNotFoundException {
+        this.biblioteca.checkout("Harry Potter");
+        Book book = (Book)this.biblioteca.getItems().find("Harry Potter");
         boolean isBookAvailable = book.isAvailable();
         assertThat(isBookAvailable, is(false));
     }
@@ -51,29 +51,35 @@ public class BibliotecaTest {
     @Test
     public void shouldNotShowCheckedOutBookOnBookList(){
         Book beforeCheckout = checkoutHarryPotterBook();
-        assertThat(this.biblioteca.getAvailableBooks(), not(hasItem(beforeCheckout)));
+        assertThat(this.biblioteca.getItems().allAvailable(Book.class), not(hasItem(beforeCheckout)));
     }
 
     private Book checkoutHarryPotterBook() {
-        Book beforeCheckout = this.biblioteca.getBooks().stream().filter(book -> book.getTitle().equals("Harry Potter")).findFirst().get();
-        this.biblioteca.checkoutBook("Harry Potter");
+        Book beforeCheckout = (Book)this.biblioteca
+                .getItems()
+                .allAvailable(Book.class)
+                .stream()
+                .filter(book -> book.getTitle().equals("Harry Potter"))
+                .findFirst()
+                .get();
+        this.biblioteca.checkout("Harry Potter");
         return beforeCheckout;
     }
 
     @Test
     public void shouldNotifyIfBookIsUnavailable(){
         Book beforeCheckout = checkoutHarryPotterBook();
-        assertEquals(this.biblioteca.checkoutBook("Harry Potter"), "That book is not available!");
+        assertEquals(this.biblioteca.checkout("Harry Potter"), "That book is not available!");
     }
 
     @Test
     public void shouldReturnBookToTheRightLibrary(){
         checkoutHarryPotterBook();
-        assertEquals(this.biblioteca.returnBook("Harry Potter"), "Thank you for returning the book!");
+        assertEquals(this.biblioteca.returnItem("Harry Potter"), "Thank you for returning the book!");
     }
 
     @Test
     public void shouldNotifyIfBookDoesNotBelongToLibrary(){
-        assertEquals(this.biblioteca.returnBook("Twilight"), "That is not a valid book to return.");
+        assertEquals(this.biblioteca.returnItem("Twilight"), "Sorry, we could not find this item.");
     }
 }

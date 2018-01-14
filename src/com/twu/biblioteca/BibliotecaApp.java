@@ -2,8 +2,6 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.menu.Menu;
 
-import java.util.ArrayList;
-
 public class BibliotecaApp {
 
     private Menu menu;
@@ -23,7 +21,7 @@ public class BibliotecaApp {
     }
 
     private static Biblioteca createBiblioteca() {
-        ArrayList<Book> books = new ArrayList<Book>();
+        BibliotecaItems books = new BibliotecaItems();
         Book harry_potter = new Book("Harry Potter", "J.K. Rowling", "1997", true);
         Book lord_of_the_rings = new Book("Lord of the rings", "J.R.R. Tolkien", "1980", true);
         books.add(harry_potter);

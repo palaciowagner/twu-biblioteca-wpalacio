@@ -1,79 +1,44 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.exceptions.BookNotFoundException;
+import com.twu.biblioteca.exceptions.ItemNotFoundException;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 public class Biblioteca {
 
-    private List<Book> books;
+    private BibliotecaItems items;
 
-    public Biblioteca(List<Book> books){
-        this.setBooks(books);
+    public Biblioteca(BibliotecaItems items){
+        this.setItems(items);
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public List<Book> getAvailableBooks() {
-        return this.books.stream().filter(Book::isAvailable).collect(Collectors.toList());
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
-    public String checkoutBook(String title) {
-        String returnMessage = "That book is not available!";
-
+    public String checkout(String title) {
         try {
-            Book book = findBook(title);
-            if (book.isAvailable()) {
-                book.setAvailable(false);
-                return "Thank you! Enjoy the book!";
-            }
-            return returnMessage;
-        } catch (BookNotFoundException e) {
-            return e.getMessage();
+            Item item = this.items.find(title);
+            return item.checkout(item);
+        } catch (ItemNotFoundException e) {
+            return "Sorry, we could not find this item.";
         }
     }
 
-    public String returnBook(String title) {
-        String returnMessage = "That is not a valid book to return.";
-        try{
-            Book book = findBook(title);
-            if (!book.isAvailable()) {
-                book.setAvailable(true);
-                return "Thank you for returning the book!";
-            }
-            return returnMessage;
-        }
-        catch (BookNotFoundException e) {
-            return returnMessage;
-        }
-
-    }
-
-    public Book findBook(String title) throws BookNotFoundException {
+    public String returnItem(String title) {
         try {
-            return this.getBooks()
-                    .stream()
-                    .filter(book -> book.getTitle()
-                            .equals(title))
-                    .findFirst()
-                    .get();
-
-        }
-        catch (NoSuchElementException ex){
-            throw new BookNotFoundException();
+            Item item = this.items.find(title);
+            return item.returnItem(item);
+        } catch (ItemNotFoundException e) {
+            return "Sorry, we could not find this item.";
         }
     }
 
-    public List<Movie> getAvailableMovies() {
-        return new ArrayList<Movie>();
+    public BibliotecaItems getItems(){
+        return items;
+    }
+
+    public List<Item> getAllItems(){
+        return items.all();
+    }
+
+    public void setItems(BibliotecaItems items) {
+        this.items = items;
     }
 }

@@ -2,6 +2,7 @@ package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.Biblioteca;
 import com.twu.biblioteca.Book;
+import com.twu.biblioteca.Item;
 import com.twu.biblioteca.helpers.CliHelper;
 
 public class ListBooksOption extends MenuOption {
@@ -12,7 +13,7 @@ public class ListBooksOption extends MenuOption {
 
     @Override
     public void view() {
-        if (!(this.getBiblioteca().getAvailableBooks().size() > 0)) {
+        if (!(this.getBiblioteca().getItems().allAvailable(Book.class).size() > 0)) {
             CliHelper.println("There are no books available :(");
             CliHelper.println("Please, come later.");
             return;
@@ -22,7 +23,8 @@ public class ListBooksOption extends MenuOption {
 
     private void showAvailableBooksList() {
         printAvailableBooksHeader();
-        for (Book book : this.getBiblioteca().getAvailableBooks()) {
+        for (Item item : this.getBiblioteca().getItems().allAvailable(Book.class)) {
+            Book book = (Book)item;
             CliHelper.buildFormattedLine(book.getTitle(), book.getAuthor(), book.getPublishedYear());
         }
         CliHelper.println("");

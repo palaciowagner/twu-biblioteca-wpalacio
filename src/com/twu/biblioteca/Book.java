@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-public class Book {
+public class Book extends Item {
 
     private String title;
     private String author;
@@ -11,7 +11,7 @@ public class Book {
         this.setTitle(title);
         this.setAuthor(author);
         this.setPublishedYear(publishedYear);
-        this.setAvailable(isAvailable);
+        this.setIsAvailable(isAvailable);
     }
 
     public String getTitle() {
@@ -22,13 +22,15 @@ public class Book {
         this.title = title;
     }
 
+    @Override
     public boolean isAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
+
 
     public String getAuthor() {
         return author;
@@ -44,5 +46,27 @@ public class Book {
 
     public void setPublishedYear(String publishedYear) {
         this.publishedYear = publishedYear;
+    }
+
+    @Override
+    public String checkout(Item item) {
+        Book book = (Book)item;
+        String returnMessage = "That book is not available!";
+        if (book.isAvailable()) {
+            book.setIsAvailable(false);
+            return "Thank you! Enjoy the book!";
+        }
+        return returnMessage;
+    }
+
+    @Override
+    public String returnItem(Item item) {
+        Book book = (Book)item;
+        String returnMessage = "That is not a valid book to return.";
+        if (!book.isAvailable()) {
+            book.setIsAvailable(true);
+            return "Thank you for returning the book!";
+        }
+        return returnMessage;
     }
 }

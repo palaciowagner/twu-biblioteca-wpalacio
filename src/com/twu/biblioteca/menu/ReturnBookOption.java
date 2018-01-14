@@ -11,6 +11,6 @@ public class ReturnBookOption extends MenuOption {
     @Override
     public void view() {
         String bookTitle = CliHelper.getUserInput("Enter the title of the book you want to return: ");
-        CliHelper.println(this.getBiblioteca().returnBook(bookTitle));
+        CliHelper.println(this.getBiblioteca().returnItem(bookTitle));
     }
 }

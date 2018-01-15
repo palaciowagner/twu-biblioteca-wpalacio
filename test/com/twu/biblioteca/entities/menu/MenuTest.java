@@ -71,5 +71,10 @@ public class MenuTest {
         assertThat(this.menu.showOptions(), containsString("Checkout Movie\n"));
     }
 
+    @Test
+    public void shouldShowUserInformationOption(){
+        assertThat(this.menu.showOptions(), containsString("See my profile\n"));
+    }
+
 
 }

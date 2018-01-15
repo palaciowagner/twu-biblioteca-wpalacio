@@ -11,6 +11,7 @@ public class Biblioteca {
 
     private BibliotecaItems items;
     private UserAccounts userAccounts;
+    private User loggedInUser;
 
     public Biblioteca(BibliotecaItems items, UserAccounts userAccounts) {
         this.setItems(items);
@@ -50,6 +51,7 @@ public class Biblioteca {
     public boolean signIn(String libraryNumber, String password) throws UserNotFoundException, IncorrectPasswordException{
         try{
             User user = this.userAccounts.findUser(libraryNumber);
+            this.setLoggedInUser(user);
             return user.isPasswordCorrect(password);
         }
         catch (NoSuchElementException ex){
@@ -62,5 +64,13 @@ public class Biblioteca {
 
     public void setUserAccounts(UserAccounts userAccounts) {
         this.userAccounts = userAccounts;
+    }
+
+    public User getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public void setLoggedInUser(User loggedInUser) {
+        this.loggedInUser = loggedInUser;
     }
 }

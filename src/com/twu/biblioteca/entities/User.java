@@ -6,6 +6,7 @@ public class User {
 
     private String libraryNumber;
     private String password;
+    private Profile userProfile;
 
     public User(String libraryNumber, String password){
         this.libraryNumber = libraryNumber;
@@ -34,4 +35,9 @@ public class User {
         }
         return true;
     }
+
+    public Profile getProfile() {
+        return userProfile;
+    }
+
 }

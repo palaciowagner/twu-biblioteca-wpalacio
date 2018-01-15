@@ -1,5 +1,6 @@
 package com.twu.biblioteca.entities;
 
+import com.twu.biblioteca.exceptions.IncorrectPasswordException;
 import com.twu.biblioteca.exceptions.ItemNotFoundException;
 import com.twu.biblioteca.exceptions.UserNotFoundException;
 
@@ -46,13 +47,16 @@ public class Biblioteca {
         this.items = items;
     }
 
-    public boolean signIn(String libraryNumber, String password) throws UserNotFoundException{
+    public boolean signIn(String libraryNumber, String password) throws UserNotFoundException, IncorrectPasswordException{
         try{
             User user = this.userAccounts.findUser(libraryNumber);
             return user.isPasswordCorrect(password);
         }
         catch (NoSuchElementException ex){
             throw new UserNotFoundException();
+        }
+        catch (IncorrectPasswordException ex){
+            throw ex;
         }
     }
 

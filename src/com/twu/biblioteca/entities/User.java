@@ -1,5 +1,7 @@
 package com.twu.biblioteca.entities;
 
+import com.twu.biblioteca.exceptions.IncorrectPasswordException;
+
 public class User {
 
     private String libraryNumber;
@@ -26,7 +28,10 @@ public class User {
         this.password = password;
     }
 
-    public boolean isPasswordCorrect(String password) {
-        return this.password.equals(password);
+    public boolean isPasswordCorrect(String password) throws IncorrectPasswordException{
+        if (!this.password.equals(password)){
+            throw new IncorrectPasswordException();
+        }
+        return true;
     }
 }

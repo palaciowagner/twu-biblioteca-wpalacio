@@ -1,5 +1,6 @@
 package com.twu.biblioteca.entities;
 
+import com.twu.biblioteca.exceptions.IncorrectPasswordException;
 import com.twu.biblioteca.exceptions.ItemNotFoundException;
 import com.twu.biblioteca.exceptions.UserNotFoundException;
 import org.junit.Before;
@@ -12,7 +13,6 @@ import static junit.framework.TestCase.fail;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 public class BibliotecaTest {
     private Biblioteca biblioteca;
@@ -88,17 +88,23 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void shouldSignIn() throws UserNotFoundException{
+    public void shouldSignIn() throws UserNotFoundException, IncorrectPasswordException{
         assertTrue(this.biblioteca.signIn("1234-5678", "test"));
     }
 
     @Test
     public void shouldFailSignInIfPasswordIsIncorrect() throws UserNotFoundException{
-        assertFalse(this.biblioteca.signIn("1234-5678", "abrico"));
+        try{
+            this.biblioteca.signIn("1234-5678", "testee");
+            fail();
+        }
+        catch (IncorrectPasswordException ex){
+
+        }
     }
 
     @Test
-    public void shouldRaiseErrorWhenUserIsNotFound(){
+    public void shouldRaiseErrorWhenUserIsNotFound() throws IncorrectPasswordException{
         try{
             this.biblioteca.signIn("4244-2323", "testee");
             fail();

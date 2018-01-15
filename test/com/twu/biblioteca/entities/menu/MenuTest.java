@@ -70,4 +70,6 @@ public class MenuTest {
     public void shouldShowCheckoutMovieOption(){
         assertThat(this.menu.showOptions(), containsString("Checkout Movie\n"));
     }
+
+
 }

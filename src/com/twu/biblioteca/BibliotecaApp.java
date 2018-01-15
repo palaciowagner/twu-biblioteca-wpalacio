@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.entities.*;
 import com.twu.biblioteca.entities.menu.Menu;
+import com.twu.biblioteca.exceptions.IncorrectPasswordException;
 import com.twu.biblioteca.exceptions.UserNotFoundException;
 import com.twu.biblioteca.helpers.CliHelper;
 
@@ -29,9 +30,12 @@ public class BibliotecaApp {
             String libraryNumber = CliHelper.getUserInput("Library Number");
             String password = CliHelper.getUserInput("Password:");
             return biblioteca.signIn(libraryNumber, password);
-
         }
         catch (UserNotFoundException ex){
+            CliHelper.println(ex.getMessage());
+            return false;
+        }
+        catch (IncorrectPasswordException ex){
             CliHelper.println(ex.getMessage());
             return false;
         }

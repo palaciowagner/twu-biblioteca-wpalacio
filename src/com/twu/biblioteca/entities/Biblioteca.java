@@ -41,4 +41,8 @@ public class Biblioteca {
     public void setItems(BibliotecaItems items) {
         this.items = items;
     }
+
+    public boolean signIn(String libraryNumber, String test) {
+        return false;
+    }
 }

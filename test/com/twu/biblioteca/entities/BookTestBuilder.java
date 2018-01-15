@@ -1,6 +1,4 @@
-package com.twu.biblioteca;
-
-import com.twu.biblioteca.entities.Book;
+package com.twu.biblioteca.entities;
 
 public class BookTestBuilder {
 

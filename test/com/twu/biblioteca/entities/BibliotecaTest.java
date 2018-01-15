@@ -1,15 +1,12 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.entities;
 
-import com.twu.biblioteca.entities.Biblioteca;
-import com.twu.biblioteca.entities.Book;
-import com.twu.biblioteca.entities.Item;
-import com.twu.biblioteca.entities.Movie;
 import com.twu.biblioteca.exceptions.ItemNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -85,5 +82,11 @@ public class BibliotecaTest {
     @Test
     public void shouldNotifyIfBookDoesNotBelongToLibrary(){
         assertEquals(this.biblioteca.returnItem("Twilight"), "Sorry, we could not find this item.");
+    }
+
+    @Test
+    public void shouldSignIn(){
+        assertTrue(this.biblioteca.signIn("1234-5678", "test"));
+
     }
 }

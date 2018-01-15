@@ -1,7 +1,7 @@
 package com.twu.biblioteca.entities.menu;
 
 import com.twu.biblioteca.entities.Biblioteca;
-import com.twu.biblioteca.BibliotecaTestBuilder;
+import com.twu.biblioteca.entities.BibliotecaTestBuilder;
 
 import java.util.ArrayList;
 import java.util.List;

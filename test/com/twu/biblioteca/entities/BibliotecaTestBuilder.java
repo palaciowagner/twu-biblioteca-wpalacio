@@ -1,8 +1,4 @@
-package com.twu.biblioteca;
-
-import com.twu.biblioteca.entities.Biblioteca;
-import com.twu.biblioteca.entities.BibliotecaItems;
-import com.twu.biblioteca.entities.Item;
+package com.twu.biblioteca.entities;
 
 import java.util.List;
 

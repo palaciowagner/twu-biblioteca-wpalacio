@@ -2,7 +2,6 @@ package com.twu.biblioteca.entities;
 
 import com.twu.biblioteca.exceptions.ItemNotFoundException;
 import com.twu.biblioteca.exceptions.UserNotFoundException;
-import com.twu.biblioteca.helpers.CliHelper;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -53,7 +52,6 @@ public class Biblioteca {
             return user.isPasswordCorrect(password);
         }
         catch (NoSuchElementException ex){
-            CliHelper.println(ex.getMessage());
             throw new UserNotFoundException();
         }
     }

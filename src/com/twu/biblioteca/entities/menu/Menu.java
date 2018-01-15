@@ -45,6 +45,14 @@ public class Menu {
         }
     }
 
+    public MenuOption findOption(int number) throws InvalidOptionException{
+        Optional<MenuOption> option = findOptionByNumber(number);
+        if (!option.isPresent()){
+            throw new InvalidOptionException();
+        }
+        return option.get();
+    }
+
     private void chooseOption(int number){
 
         try{
@@ -60,14 +68,6 @@ public class Menu {
 
     private int getUserOption(String message) {
         return parseInt(CliHelper.getUserInput(message));
-    }
-
-    public MenuOption findOption(int number) throws InvalidOptionException{
-            Optional<MenuOption> option = findOptionByNumber(number);
-            if (!option.isPresent()){
-                throw new InvalidOptionException();
-            }
-            return option.get();
     }
 
     private Optional<MenuOption> findOptionByNumber(int number) {

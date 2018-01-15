@@ -2,23 +2,39 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.entities.*;
 import com.twu.biblioteca.entities.menu.Menu;
+import com.twu.biblioteca.exceptions.UserNotFoundException;
+import com.twu.biblioteca.helpers.CliHelper;
 
 public class BibliotecaApp {
 
     private Menu menu;
 
-
     public static void main(String[] args) {
         Biblioteca biblioteca =  createBiblioteca();
         Menu menu = new Menu(biblioteca);
 
-        showWelcomeMessage();
-        menu.printOptions();
-        menu.getUserOption();
+        if (signIn(biblioteca)) {
+            showWelcomeMessage();
+            menu.printOptions();
+            menu.getUserOption();
+        }
     }
 
     private static void showWelcomeMessage() {
         System.out.println("===== Welcome to TWU Biblioteca =====");
+    }
+
+    private static boolean signIn(Biblioteca biblioteca){
+        try{
+            String libraryNumber = CliHelper.getUserInput("Library Number");
+            String password = CliHelper.getUserInput("Password:");
+            return biblioteca.signIn(libraryNumber, password);
+
+        }
+        catch (UserNotFoundException ex){
+            CliHelper.println(ex.getMessage());
+            return false;
+        }
     }
 
     private static Biblioteca createBiblioteca() {

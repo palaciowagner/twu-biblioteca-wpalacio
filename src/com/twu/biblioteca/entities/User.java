@@ -25,4 +25,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public boolean isPasswordCorrect(String password) {
+        return this.password.equals(password);
+    }
 }

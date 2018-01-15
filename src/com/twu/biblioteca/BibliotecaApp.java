@@ -1,9 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.entities.Biblioteca;
-import com.twu.biblioteca.entities.BibliotecaItems;
-import com.twu.biblioteca.entities.Book;
-import com.twu.biblioteca.entities.Movie;
+import com.twu.biblioteca.entities.*;
 import com.twu.biblioteca.entities.menu.Menu;
 
 public class BibliotecaApp {
@@ -32,7 +29,10 @@ public class BibliotecaApp {
         items.add(harry_potter);
         items.add(lord_of_the_rings);
         items.add(star_wars);
-        return new Biblioteca(items);
+
+        UserAccounts users = new UserAccounts();
+        users.addUser(new User("1234-5678", "test"));
+        return new Biblioteca(items, users);
     }
 
 }

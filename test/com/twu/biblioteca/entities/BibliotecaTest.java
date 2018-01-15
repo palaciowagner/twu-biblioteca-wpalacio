@@ -1,15 +1,18 @@
 package com.twu.biblioteca.entities;
 
 import com.twu.biblioteca.exceptions.ItemNotFoundException;
+import com.twu.biblioteca.exceptions.UserNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
 import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.fail;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class BibliotecaTest {
     private Biblioteca biblioteca;
@@ -85,8 +88,23 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void shouldSignIn(){
+    public void shouldSignIn() throws UserNotFoundException{
         assertTrue(this.biblioteca.signIn("1234-5678", "test"));
+    }
 
+    @Test
+    public void shouldFailSignInIfPasswordIsIncorrect() throws UserNotFoundException{
+        assertFalse(this.biblioteca.signIn("1234-5678", "abrico"));
+    }
+
+    @Test
+    public void shouldRaiseErrorWhenUserIsNotFound(){
+        try{
+            this.biblioteca.signIn("4244-2323", "testee");
+            fail();
+        }
+        catch (UserNotFoundException ex){
+
+        }
     }
 }

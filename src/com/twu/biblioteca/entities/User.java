@@ -8,9 +8,10 @@ public class User {
     private String password;
     private Profile userProfile;
 
-    public User(String libraryNumber, String password){
-        this.libraryNumber = libraryNumber;
-        this.password = password;
+    public User(String libraryNumber, String password, Profile profile){
+        this.setLibraryNumber(libraryNumber);
+        this.setPassword(password);
+        this.setUserProfile(profile);
     }
 
     public String getLibraryNumber() {
@@ -40,4 +41,7 @@ public class User {
         return userProfile;
     }
 
+    public void setUserProfile(Profile userProfile) {
+        this.userProfile = userProfile;
+    }
 }

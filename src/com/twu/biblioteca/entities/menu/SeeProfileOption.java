@@ -1,6 +1,8 @@
 package com.twu.biblioteca.entities.menu;
 
 import com.twu.biblioteca.entities.Biblioteca;
+import com.twu.biblioteca.entities.Profile;
+import com.twu.biblioteca.helpers.CliHelper;
 
 public class SeeProfileOption extends MenuOption {
     public SeeProfileOption(int optionNumber, Biblioteca biblioteca) {
@@ -9,6 +11,8 @@ public class SeeProfileOption extends MenuOption {
 
     @Override
     public void view() {
-        this.getBiblioteca().getLoggedInUser().getProfile();
+        Profile userProfile = this.getBiblioteca().getLoggedInUser().getProfile();
+        CliHelper.buildFormattedLine("Name", "Email", "Phone");
+        CliHelper.buildFormattedLine(userProfile.getName(), userProfile.getEmail(), userProfile.getPhone());
     }
 }

@@ -51,7 +51,8 @@ public class BibliotecaApp {
         items.add(star_wars);
 
         UserAccounts users = new UserAccounts();
-        users.addUser(new User("1234-5678", "test"));
+        Profile profile = new Profile("Wagner", "wpalacio@tw.com", "9876-4334");
+        users.addUser(new User("1234-5678", "test", profile));
         return new Biblioteca(items, users);
     }
 

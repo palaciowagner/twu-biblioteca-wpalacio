@@ -29,7 +29,5 @@ public class UserAccounts {
                     .filter(user -> user.getLibraryNumber().equals(libraryNumber))
                     .findFirst()
                     .get();
-
-
     }
 }
